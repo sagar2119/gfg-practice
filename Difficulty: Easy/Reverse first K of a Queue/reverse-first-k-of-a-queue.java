@@ -1,18 +1,23 @@
 class Solution {
     public Queue<Integer> reverseFirstK(Queue<Integer> q, int k) {
-        // code here
-        Stack<Integer> stack=new Stack<>();
-       if(k>q.size()) return q;
-       for(int i=0;i<k;i++){
-           stack.push(q.remove());}
-       while(!stack.isEmpty()){
-           q.add(stack.pop());
-           
-       }
-       int size = q.size();
-       for(int i=0;i<size-k;i++){
-           q.add(q.remove());
-       }
+        
+    int n = q.size();
+    if(k>n || k<=0)
         return q;
+    reverseQ(q,k);
+    for(int i=0; i<n-k;i++){
+        q.add(q.poll());
+        
     }
+    return q;
+    }
+    private void reverseQ(Queue<Integer> q, int k){
+        if(k==0)
+            return;
+        int f = q.poll();
+        reverseQ(q,k-1);
+        q.add(f);
+    }
+    
+ 
 }
