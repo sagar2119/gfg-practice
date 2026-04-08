@@ -3,17 +3,12 @@ import java.util.*;
 class Solution {
 
     public Queue<Integer> reverseQueue(Queue<Integer> queue) {
-        Stack<Integer> stack = new Stack<>();
-
-      
-        while (!queue.isEmpty()) {
-            stack.push(queue.poll());
+        if(queue.isEmpty()){
+            return queue;
         }
-
-       
-        while (!stack.isEmpty()) {
-            queue.offer(stack.pop());
-        }
+        int front = queue.poll();
+        reverseQueue(queue);
+        queue.offer(front);
 
         return queue;
     }
